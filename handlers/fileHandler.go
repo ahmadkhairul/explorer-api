@@ -5,9 +5,12 @@ import (
 	"explorer-api/models"
 )
 
-func FindFiles(fileName string, fileType string, fileParentID string) ([]models.File, int) {
+func FindFiles(fileId string, fileName string, fileType string, fileParentID string) ([]models.File, int) {
 	var files []models.File
 	query := database.DB
+	if fileId != "" {
+		query = query.Where("id = ?", fileId)
+	}
 
 	if fileParentID != "" {
 		query = query.Where("parent_id = ?", fileParentID)

@@ -10,6 +10,7 @@ func SetupRoutes(app *fiber.App) {
 	api := app.Group("/api/v1")
 
 	api.Get("/files", controllers.GetFile)
-	api.Get("/files/:parent_id", controllers.GetFileByID)
+	api.Get("/folder/:parent_id", controllers.GetFileByParentID)
+	api.Get("/files/:id", controllers.GetFileByID)
 	api.Post("/files", controllers.CreateFile)
 }
